@@ -1,0 +1,30 @@
+/* main.css */
+
+/* Стили для модального окна */
+.modal.fade .modal-dialog {
+    transform: translate(0, -50%);
+    transition: transform 0.3s ease-out;
+}
+
+/* Анимация для открытия модального окна */
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+}
+
+/* Затемнение фона при открытом модальном окне */
+.modal-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+/* Показываем фон при открытом модальном окне */
+.modal.show .modal-backdrop {
+    opacity: 0.5;
+}
+
+/* Скрытие модального окна и фона при закрытии */
+.modal.fade:not(.show) .modal-backdrop,
+.modal.fade:not(.show) .modal-dialog {
+    transform: translate(0, -50%);
+    opacity: 0;
+}

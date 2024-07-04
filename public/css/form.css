@@ -1,0 +1,65 @@
+/* form.css */
+
+body {
+    background-color: #1c1c1c; /* Темный фон */
+    color: #fff; /* Цвет текста */
+}
+
+.container {
+    max-width: 600px; /* Максимальная ширина контейнера формы */
+}
+
+.form-container {
+    background-color: #2a2a2a; /* Фон формы */
+    padding: 20px; /* Внутренний отступ */
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    width: 100%; /* Полная ширина */
+    max-width: 400px; /* Максимальная ширина контейнера формы */
+    margin: 0 auto; /* Центрирование контейнера формы */
+    margin-top: 40px; /* Отступ сверху */
+}
+
+.form-header {
+    text-align: center; /* Центрирование текста заголовка */
+    margin-bottom: 20px; /* Отступ снизу заголовка */
+    padding-bottom: 10px; /* Внутренний отступ снизу заголовка */
+    border-bottom: 2px solid #444; /* Нижняя рамка заголовка */
+}
+
+.form-label {
+    font-weight: bold; /* Жирный шрифт для меток */
+}
+
+.form-control {
+    background-color: #333; /* Цвет фона полей ввода */
+    border: 1px solid #555; /* Цвет рамки полей ввода */
+    color: #fff; /* Цвет текста в полях ввода */
+    height: 35px; /* Уменьшенная высота полей ввода */
+    padding: 10px; /* Уменьшенная внутренняя отступ */
+    max-height: 50px; /* Максимальная высота для полей ввода */
+}
+
+.form-control:focus {
+    background-color: #444; /* Цвет фона полей ввода при фокусе */
+    border-color: #666; /* Цвет рамки полей ввода при фокусе */
+    box-shadow: none; /* Убрать тень при фокусе */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Цвет кнопки */
+    border-color: #007bff; /* Цвет рамки кнопки */
+    font-weight: bold; /* Жирный шрифт для кнопки */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Плавный переход */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+    border-color: #0056b3; /* Цвет рамки кнопки при наведении */
+}
+
+textarea.form-control {
+    height: auto; /* Автоматическая высота для текстовой области */
+    max-height: 100px; /* Максимальная высота для текстовой области */
+    padding: 10px; /* Уменьшенная внутренняя отступ */
+}

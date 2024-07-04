@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    padding: 20px;
+}
+
+.container {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    background-color: #1c1c1c; /* Темная карточка */
+    border: none;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Анимация */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Масштабирование при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.card-title {
+    color: #e0e0e0; /* Цвет заголовка */
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    color: #b0b0b0; /* Цвет текста */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+#card-container {
+    margin-top: 20px;
+}
+
+/* Дополнительные стили для центрирования элементов */
+.centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Стили для модального окна */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 1040;
+}
+
+.modal-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: #1c1c1c; /* Темная карточка */
+    color: #fff;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.2s; /* Анимация */
+    display: none;
+    z-index: 1050;
+}
+
+.modal-card:hover {
+    transform: scale(1.05); /* Масштабирование при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.modal-card .card-body {
+    padding: 20px; /* Отступ текста от рамки карточки */
+}
+
+.modal-card .card-title {
+    color: #e0e0e0; /* Цвет заголовка */
+    margin-bottom: 0.75rem;
+}
+
+.modal-card .card-text {
+    color: #b0b0b0; /* Цвет текста */
+}
+
+.modal-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+

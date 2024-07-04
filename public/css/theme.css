@@ -1,0 +1,33 @@
+/* Стили для темной темы 2 (dark2) для ПК */
+body.dark2 {
+    background-color: #1d1f21; /* Темный цвет фона для ПК */
+    color: #c0c0c0; /* Светлый цвет текста для ПК */
+}
+
+body.dark2 .navbar-dark.bg-dark,
+body.dark2 .offcanvas.offcanvas-end.text-bg-dark {
+    background-color: #212529; /* Цвет фона для навигационной панели и offcanvas */
+}
+
+body.dark2 .card.h-100.shadow {
+    background-color: #3a3f44; /* Темный цвет фона для карточек */
+    color: #c0c0c0; /* Цвет текста для карточек */
+}
+
+body.dark2 .card.h-100.shadow .card-title {
+    color: #fff; /* Цвет заголовков карточек */
+}
+
+body.dark2 .card.h-100.shadow .card-text {
+    color: #ddd; /* Цвет текста в карточках */
+}
+
+body.dark2 .btn.btn-primary {
+    background-color: #0062cc; /* Цвет кнопки */
+    border-color: #0056b3; /* Цвет границы кнопки */
+}
+
+body.dark2 .btn.btn-primary:hover {
+    background-color: #004ba0; /* Цвет кнопки при наведении */
+    border-color: #004080; /* Цвет границы кнопки при наведении */
+}

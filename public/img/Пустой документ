@@ -1,0 +1,118 @@
+body {
+    background-color: #121212; /* Тёмный фон */
+    color: #e0e0e0; /* Светлый текст */
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    padding: 20px;
+}
+
+.container-fluid {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    background-color: #1c1c1c; /* Тёмная карточка */
+    border: none;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Анимация */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Масштабирование при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.card-title {
+    color: #e0e0e0; /* Цвет заголовка */
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    color: #b0b0b0; /* Цвет текста */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+#card-container {
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    background-color: #121212; /* Темная тема */
+    color: #e0e0e0; /* Светлый текст */
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    padding: 20px;
+}
+
+.container {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    background-color: #1c1c1c; /* Темная карточка */
+    border: none;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Анимация */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Масштабирование при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.card-title {
+    color: #e0e0e0; /* Цвет заголовка */
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    color: #b0b0b0; /* Цвет текста */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+#card-container {
+    margin-top: 20px;
+}
+
