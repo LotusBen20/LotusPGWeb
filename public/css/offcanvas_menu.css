@@ -1,0 +1,66 @@
+.custom-btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.username-item {
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.nav-link.btn {
+    color: #ffffff;
+    margin: 5px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.nav-link.btn:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0056b3; /* Add hover effect */
+}
+
+.nav-link {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.dropdown-item {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dropdown-item:hover {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.offcanvas.zz {
+    background: rgba(0, 0, 0, 0.7); /* Slightly darker background for better contrast */
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+    border: 2px solid rgba(255, 255, 255, 0.10);
+}
+
+.offcanvas-title,
+.nav-link,
+.dropdown-item {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.offcanvas-body {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}

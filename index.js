@@ -4,8 +4,13 @@ import bodyParser from 'body-parser';
 import fs from 'fs';
 import session from 'express-session';
 
+
+
+
+
 const app = express();
 const __dirname = path.resolve();
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -47,6 +52,8 @@ app.use((req, res, next) => {
         next();
     }
 });
+
+
 
 // Маршрут для отображения страницы аутентификации и обработки регистрации/входа
 app.get('/auth', (req, res) => {
@@ -91,9 +98,11 @@ function writeDataToFile(filePath, data, callback) {
     });
 }
 
+// Функция для генерации уникального id на основе текущего времени в миллисекундах
 function generateUniqueId() {
-    return Date.now(); // Простой вариант: используем текущее время в миллисекундах
+    return Date.now();
 }
+
 
 // Роуты
 // Маршрут для первого визита и перенаправления на страницу аутентификации
@@ -221,36 +230,40 @@ app.get('/auth', (req, res) => {
     });
 });
 
-// Маршрут для обработки регистрации и входа
 app.post('/auth', (req, res) => {
-    const { action, username, password } = req.body;
+    const { action, username, password, email } = req.body;
 
     if (action === 'register') {
-        readDataFromFile(usersFilePath, (err, users) => {
+        readDataFromFile(usersFilePath, (err, existingUsers) => {
             if (err) {
                 console.error('Ошибка чтения файла пользователей:', err);
-                res.status(500).send('Ошибка сервера');
-            } else {
-                const userExists = users.find(user => user.username === username);
-                if (userExists) {
-                    return res.render('auth', { 
-                        user: req.session.user,
-                        loginError: null,
-                        registerError: 'Пользователь уже существует'
-                    });
+                return res.status(500).send('Ошибка сервера');
+            }
+
+            const userExists = existingUsers.find(user => user.username === username);
+            if (userExists) {
+                return res.render('auth', { registerError: 'Пользователь с таким именем уже зарегистрирован' });
+            }
+
+            const newUser = {
+                id: generateUniqueId(), // Генерируем уникальный id
+                username,
+                password,
+                email,
+                role: 'Пользователь' // Добавляем дефолтную роль "Пользователь"
+            };
+
+            existingUsers.push(newUser);
+
+            writeDataToFile(usersFilePath, existingUsers, (writeErr) => {
+                if (writeErr) {
+                    console.error('Ошибка записи файла пользователей:', writeErr);
+                    return res.status(500).send('Ошибка сервера');
                 }
 
-                users.push({ username, password });
-                writeDataToFile(usersFilePath, users, (writeErr) => {
-                    if (writeErr) {
-                        console.error('Ошибка записи файла пользователей:', writeErr);
-                        res.status(500).send('Ошибка сервера');
-                    } else {
-                        req.session.user = { username };
-                        res.redirect('/');
-                    }
-                });
-            }
+                req.session.user = newUser;
+                res.redirect('/');
+            });
         });
     } else if (action === 'login') {
         readDataFromFile(usersFilePath, (err, users) => {
@@ -260,14 +273,10 @@ app.post('/auth', (req, res) => {
             } else {
                 const user = users.find(user => user.username === username && user.password === password);
                 if (user) {
-                    req.session.user = { username };
+                    req.session.user = user;
                     res.redirect('/');
                 } else {
-                    res.render('auth', { 
-                        user: req.session.user,
-                        loginError: 'Неверные имя пользователя или пароль',
-                        registerError: null 
-                    });
+                    res.render('auth', { loginError: 'Неверные имя пользователя или пароль' });
                 }
             }
         });
@@ -275,6 +284,119 @@ app.post('/auth', (req, res) => {
         res.status(400).send('Неверный запрос');
     }
 });
+
+// Маршрут для обработки входа
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    readDataFromFile(usersFilePath, (err, users) => {
+        if (err) {
+            console.error('Ошибка чтения файла пользователей:', err);
+            res.status(500).send('Ошибка сервера');
+        } else {
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                req.session.user = { username };
+                res.redirect('/');
+            } else {
+                res.render('auth', { 
+                    user: req.session.user,
+                    loginError: 'Неверные имя пользователя или пароль',
+                    registerError: null 
+                });
+            }
+        }
+    });
+});
+
+
+
+// Маршрут для обработки регистрации
+app.post('/register', (req, res) => {
+    const { username, password } = req.body;
+    readDataFromFile(usersFilePath, (err, users) => {
+        if (err) {
+            console.error('Ошибка чтения файла пользователей:', err);
+            res.status(500).send('Ошибка сервера');
+        } else {
+            const userExists = users.find(user => user.username === username);
+            if (userExists) {
+                return res.render('auth', { 
+                    user: req.session.user,
+                    loginError: null,
+                    registerError: 'Пользователь уже существует'
+                });
+            }
+
+            const newUser = {
+                id: generateUniqueId(), // Генерируем уникальный id для нового пользователя
+                username,
+                password,
+                role: 'Пользователь' // Добавляем дефолтную роль "Пользователь"
+            };
+
+            users.push(newUser); // Добавляем нового пользователя в массив
+
+            writeDataToFile(usersFilePath, users, (writeErr) => {
+                if (writeErr) {
+                    console.error('Ошибка записи файла пользователей:', writeErr);
+                    res.status(500).send('Ошибка сервера');
+                } else {
+                    req.session.user = newUser; // Сохраняем пользователя в сессии
+                    res.redirect('/'); // Перенаправляем на главную страницу после успешной регистрации
+                }
+            });
+        }
+    });
+});
+
+
+// Маршрут для административной панели пользователей
+app.get('/admin/users', (req, res) => {
+    readDataFromFile(usersFilePath, (err, users) => {
+        if (err) {
+            console.error('Ошибка чтения файла пользователей:', err);
+            res.status(500).send('Ошибка сервера');
+        } else {
+            res.render('admin/users', { users });
+        }
+    });
+});
+
+// Роут для обновления данных пользователя
+// Маршрут для обновления данных пользователя
+app.put('/admin/users/:id', (req, res) => {
+    const userId = parseInt(req.params.id);
+    const { username, password, email, role } = req.body;
+
+    readDataFromFile(usersFilePath, (err, users) => {
+        if (err) {
+            console.error('Ошибка чтения файла пользователей:', err);
+            res.status(500).send('Ошибка сервера');
+        } else {
+            const userIndex = users.findIndex(user => user.id === userId);
+            if (userIndex === -1) {
+                res.status(404).send('Пользователь не найден');
+            } else {
+                // Update all fields
+                users[userIndex].username = username;
+                users[userIndex].password = password;
+                users[userIndex].email = email;
+                users[userIndex].role = role;
+
+                // Write updated data back to file
+                writeDataToFile(usersFilePath, users, (writeErr) => {
+                    if (writeErr) {
+                        console.error('Ошибка записи файла пользователей:', writeErr);
+                        res.status(500).send('Ошибка сервера');
+                    } else {
+                        res.json(users[userIndex]); // Send updated user data back
+                    }
+                });
+            }
+        }
+    });
+});
+
 
 
 // Маршрут для выхода
